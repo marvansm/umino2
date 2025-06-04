@@ -1,0 +1,24 @@
+.burgerIcon {
+    display: none;
+}
+.pagination {
+    display: block;
+}
+.icons {
+    display: block;
+}
+
+@media screen and (min-width: 300px) and (max-width: 1024px) {
+  .burgerIcon {
+    display: block;
+  }
+
+  .pagination {
+    display: none;
+  }
+  .icons {
+    display: none;
+  }
+
+}
+

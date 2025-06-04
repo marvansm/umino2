@@ -1,0 +1,78 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Hammershoi Spice Mill Small",
+      "image": "https://umino-demo.myshopify.com/cdn/shop/files/furniture_products_10_1.jpg?v=1682497536&width=533",
+      "hoverImg": "https://umino-demo.myshopify.com/cdn/shop/files/furniture_products_10_2.jpg?v=1682497536&width=533",
+      "discountPrice": 44.99,
+      "addtocard": "ADD TO CARD"
+    },
+    {
+      "id": 2,
+      "title": " Wave Sideboard Anthracite",
+      "image": "https://umino-demo.myshopify.com/cdn/shop/files/furniture_products_13_6.jpg?v=1682503285&width=533",
+      "hoverImg": "https://umino-demo.myshopify.com/cdn/shop/files/furniture_products_13_2.jpg?v=1682503285&width=533",
+      "discountPrice": 44.99,
+      "addtocard": "ADD TO CARD"
+    },
+    {
+      "id": 3,
+      "title": " Form Chair Brass Base",
+      "image": "https://umino-demo.myshopify.com/cdn/shop/files/furniture_products_4_1.jpg?v=1682496046&width=533",
+      "hoverImg": "https://umino-demo.myshopify.com/cdn/shop/files/furniture_products_4_2.jpg?v=1682496046&width=533",
+      "discountPrice": 44.99,
+      "addtocard": "ADD TO CARD"
+    },
+    {
+      "id": 4,
+      "title": " Vase Echasse Large",
+      "image": "https://umino-demo.myshopify.com/cdn/shop/files/furniture_products_5_1.jpg?v=1682496103&width=533",
+      "hoverImg": "https://umino-demo.myshopify.com/cdn/shop/files/furniture_products_5_2.jpg?v=1682496103&width=533",
+      "price": 59.99,
+      "preorder": "Pre-Order",
+      "preorderStatus": "-20%",
+      "preOrdername": "PRE-ORDER"
+    },
+    {
+      "id": 5,
+      "title": " Form Chair Walnut Frames",
+      "image": "https://umino-demo.myshopify.com/cdn/shop/files/furniture_products_1_8.jpg?v=1682497989&width=533",
+      "hoverImg": "https://umino-demo.myshopify.com/cdn/shop/files/furniture_products_1_8.jpg?v=1682497989&width=533",
+      "discountPrice": 44.99,
+      "addtocard": "ADD TO CARD"
+    },
+    {
+      "id": 6,
+      "title": " Carrie Table Lamp ",
+      "image": "https://umino-demo.myshopify.com/cdn/shop/files/furniture_products_7_1.jpg?v=1682497667&width=533",
+      "hoverImg": "https://umino-demo.myshopify.com/cdn/shop/files/furniture_products_7_2.jpg?v=1682497667&width=533",
+      "discountPrice": 44.99,
+      "addtocard": "ADD TO CARD"
+    },
+    {
+      "id": 23,
+      "title": " Wave Sideboard Anthracite",
+      "image": "https://umino-demo.myshopify.com/cdn/shop/files/furniture_products_13_6.jpg?v=1682503285&width=533",
+      "hoverImg": "https://umino-demo.myshopify.com/cdn/shop/files/furniture_products_13_2.jpg?v=1682503285&width=533",
+      "discountPrice": 44.99,
+      "addtocard": "ADD TO CARD"
+    },
+    {
+      "id": 34,
+      "title": " Form Chair Brass Base",
+      "image": "https://umino-demo.myshopify.com/cdn/shop/files/furniture_products_4_1.jpg?v=1682496046&width=533",
+      "hoverImg": "https://umino-demo.myshopify.com/cdn/shop/files/furniture_products_4_2.jpg?v=1682496046&width=533",
+      "discountPrice": 44.99,
+      "addtocard": "ADD TO CARD"
+    },
+    {
+      "id": 45,
+      "title": " Vase Echasse Large",
+      "image": "https://umino-demo.myshopify.com/cdn/shop/files/furniture_products_5_1.jpg?v=1682496103&width=533",
+      "hoverImg": "https://umino-demo.myshopify.com/cdn/shop/files/furniture_products_5_2.jpg?v=1682496103&width=533",
+      "discountPrice": 44.99,
+      "addtocard": "ADD TO CARD"
+    }
+  ]
+}
