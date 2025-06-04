@@ -1,13 +1,17 @@
 import React from "react";
 import ProductCard from "../../../Home/common/ProductCard";
 import { useQuery } from "@tanstack/react-query";
-import { GetStrapiData } from "../../../../services/api";
+import axios from "axios";
 
 const TopOffers = () => {
-  const { data } = useQuery({
-    queryKey: ["Products"],
-    queryFn: () => GetStrapiData("products?populate=*"),
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["product"],
+    queryFn: async () => {
+      const res = await axios.get("http://localhost:3000/products");
+      return res.data;
+    },
   });
+
   const Category = [
     {
       id: 1,
@@ -53,11 +57,15 @@ const TopOffers = () => {
         {data?.data?.map((item, idx) => (
           <ProductCard
             key={idx}
+            image={item?.image}
+            hoverimg={item?.hoverImg}
             title={item?.title}
-            image={`http://localhost:1337${item.image.url}`}
-            addtocard={true}
             price={item?.price}
-            discountprice={item?.discount}
+            discountprice={item?.discountPrice}
+            addtocard={item?.addtocard}
+            preorder={item?.preorder}
+            preorderStatus={item?.preorderStatus}
+            preordername={item?.preOrdername}
           />
         ))}
       </div>
