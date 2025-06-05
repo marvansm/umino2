@@ -43,6 +43,12 @@
     "slug": {
       "type": "uid",
       "targetField": "title"
+    },
+    "brand": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::brand.brand",
+      "inversedBy": "products"
     }
   }
 }

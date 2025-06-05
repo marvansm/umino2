@@ -7,11 +7,14 @@ import {
   PanelsLeftRightIcon,
   Plus,
   Star,
+  Trash,
   X,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import styles from "./style.module.scss";
 import { clsx } from "clsx";
+import { useCard } from "../../../../Providers/useContext";
+import { data } from "react-router";
 
 const ProductCard = ({
   image,
@@ -27,6 +30,15 @@ const ProductCard = ({
   const [OpenDetail, Setopendetail] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [BasketModal, SetBasketModal] = useState(false);
+  const {
+    AddtoCard,
+    RemoveCard,
+    ClearCard,
+    IncreaseCard,
+    TotalPrice,
+    Card,
+    DecreaseCard,
+  } = useCard();
   const OpenModals = (product) => {
     Setopendetail(true);
     setSelectedProduct(product);
@@ -112,7 +124,7 @@ const ProductCard = ({
           >
             {addtocard ? (
               <button
-                onClick={() => OpenBasket()}
+                onClick={(() => OpenBasket(), addtocard)}
                 className="bg-white w-[95%] rounded-3xl py-2.5 hover:bg-black duration-300 cursor-pointer hover:text-white text-[15px] uppercase font-medium"
               >
                 Add To Card
@@ -207,36 +219,40 @@ const ProductCard = ({
                     </ul>
                   </div>
                   <div className="mt-5">
-                    <ul className="flex items-center gap-3">
-                      <li>
-                        <ul className="flex items-center justify-between border border-gray-300 rounded-[30px] px-[8px] h-[48px] w-[109px]">
+                    {Card &&
+                      Card.map((item, idx) => (
+                        <ul key={idx} className="flex items-center gap-3">
                           <li>
-                            <Minus size={17} />
+                            <ul className="flex items-center justify-between border border-gray-300 rounded-[30px] px-[8px] h-[48px] w-[109px]">
+                              <li onClick={() => DecreaseCard(item?.id)}>
+                                <Minus size={17} />
+                              </li>
+                              <li>{item?.count}</li>
+                              <li onClick={() => IncreaseCard(item?.id)}>
+                                <Plus size={17} />
+                              </li>
+                            </ul>
                           </li>
-                          <li>1</li>
                           <li>
-                            <Plus size={17} />
+                            <button
+                              onClick={() => {
+                                OpenBasket();
+                                CloseModal();
+                                addtocard;
+                              }}
+                              className="px-[20px] py-[5px] bg-[#111111] text-white rounded-3xl h-[48px] w-[200px] hover:bg-white hover:text-black duration-300 border"
+                            >
+                              Add To Card
+                            </button>
+                          </li>
+                          <li className="border border-gray-300 rounded-full h-[40px] w-[40px] flex items-center justify-center">
+                            <Heart size={22} />
+                          </li>
+                          <li className="border border-gray-300 rounded-full h-[40px] w-[40px] flex items-center justify-center">
+                            <Menu size={22} />
                           </li>
                         </ul>
-                      </li>
-                      <li>
-                        <button
-                          onClick={() => {
-                            OpenBasket();
-                            CloseModal();
-                          }}
-                          className="px-[20px] py-[5px] bg-[#111111] text-white rounded-3xl h-[48px] w-[200px] hover:bg-white hover:text-black duration-300 border"
-                        >
-                          Add To Card
-                        </button>
-                      </li>
-                      <li className="border border-gray-300 rounded-full h-[40px] w-[40px] flex items-center justify-center">
-                        <Heart size={22} />
-                      </li>
-                      <li className="border border-gray-300 rounded-full h-[40px] w-[40px] flex items-center justify-center">
-                        <Menu size={22} />
-                      </li>
-                    </ul>
+                      ))}
                   </div>
                   <div className="flex flex-col mt-5">
                     <div className="flex  gap-2">
@@ -270,32 +286,58 @@ const ProductCard = ({
                   </li>
                 </ul>
               </div>
-              <div className="grid-cols-2 flex items-center ">
-                <div >
-                  <div className="w-[90px] h-[90px]">
-                    <img
-                      src=""
-                      alt=""
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                  <div>
-                    <h1>title</h1>
-                    <ul>
-                      <li>$232</li>
-                      <li> $1221</li>
-                    </ul>
-                    <ul className="flex items-center justify-between border border-gray-300 rounded-[30px] px-[8px] h-[28px] w-[70px]">
-                      <li>
-                        <Minus size={17} />
-                      </li>
-                      <li>1</li>
-                      <li>
-                        <Plus size={17} />
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+              <div className="h-[260px] overflow-hidden overflow-y-scroll">
+                {Card &&
+                  Card.map((item, idx) => (
+                    <div key={idx}>
+                      <div className="flex items-start gap-4 mb-5 ">
+                        <div className="w-[120px] h-[120px]">
+                          <img
+                            src={`http://localhost:1337${item.image.url}`}
+                            alt=""
+                            className="w-full h-full object-contain rounded-2xl"
+                          />
+                        </div>
+                        <div className="flex flex-col justify-between w-full gap-1.5">
+                          <h1 className="text-[20px] font-medium">
+                            {item?.title}
+                          </h1>
+                          <ul className="flex items-center gap-2">
+                            <li className="text-[15px] font-medium text-amber-900">
+                              ${item?.discount}
+                            </li>
+                            <li className="text-[15px] line-through text-[#333]">
+                              {" "}
+                              $ {item?.price}
+                            </li>
+                          </ul>
+                          <div className="flex gap-2.5 items-center">
+                            <ul className="flex items-center justify-between border border-gray-300 rounded-[30px] px-[8px] h-[28px] w-[70px]">
+                              <li onClick={() => DecreaseCard(item?.id)}>
+                                <Minus size={17} />
+                              </li>
+                              <li>{item?.count}</li>
+                              <li onClick={() => IncreaseCard(item?.id)}>
+                                <Plus size={17} />
+                              </li>
+                            </ul>
+                            <div
+                              onClick={() => RemoveCard(item?.id)}
+                              className="border border-gray-300 rounded-[30px] flex items-center justify-center p-[8px] h-[30px] w-[30px] hover:bg-[#e0dede] duration-300 cursor-pointer"
+                            >
+                              <Trash size={18} color="red" />
+                            </div>
+                          </div>
+                          <ul className="flex items-center justify-between border-b-1">
+                            <li className="font-medium ">Total:</li>
+                            <li className="text-1xl font-medium">
+                              $ {TotalPrice()}
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
