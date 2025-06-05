@@ -60,6 +60,7 @@ const TopOffers = () => {
             title={item?.title}
             price={item?.price}
             discountprice={item?.discoun}
+            addtocard={true}
           />
         ))}
       </div>
