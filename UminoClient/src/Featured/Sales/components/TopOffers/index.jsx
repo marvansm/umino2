@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import ProductCard from "../../../Home/common/ProductCard";
 import { useQuery } from "@tanstack/react-query";
 import { GetStrapiData } from "../../../../services/api";
 import { useCard } from "../../../../Providers/useContext";
-import { Minus } from "lucide-react";
+import { Minus, SearchCheck,  } from "lucide-react";
 
 const TopOffers = () => {
+  const [Search, SetSearch] = useState("");
   const { AddtoCard } = useCard();
   const { data, isLoading, error } = useQuery({
-    queryKey: ["products"],
-    queryFn: () => GetStrapiData("products?populate=*"),
+    queryKey: ["products", Search],
+    queryFn: () =>
+      GetStrapiData(
+        `products?populate=*&filters[title][$containsi]=${Search || ""}`
+      ),
   });
   console.warn(data);
 
@@ -56,7 +60,7 @@ const TopOffers = () => {
       </div>
       <div className="grid grid-cols-12 gap-9">
         <div className="col-span-2">
-          <div className="">
+          <div className="mt-10">
             <ul className="flex items-center justify-between mb-3">
               <li>
                 {" "}
@@ -137,6 +141,23 @@ const TopOffers = () => {
           </div>
         </div>
         <div className="col-span-9">
+          <div>
+            <ul className="flex items-center justify-between mb-5 mt-10">
+              <li className="flex items-center justify-between rounded-2xl gap-3 border border-gray-300 p-2 w-[500px]">
+                <input
+                  value={Search}
+                  onChange={(e) => {
+                    SetSearch(e.target.value);
+                  }}
+                  type="search"
+                  placeholder="Search product..."
+                  className="outline-none w-full"
+                />
+                <SearchCheck />
+              </li>
+              <li className="text-[25px] font-semibold">Products</li>
+            </ul>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mt-8 ">
             {data?.data?.map((item, idx) => (
               <ProductCard
